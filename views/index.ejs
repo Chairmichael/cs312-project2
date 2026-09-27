@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/x-icon" href="emoticion.png">
+  <title>Funnies fetcher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div>
+    <div class="new-post-form">
+      <form action="/" method="post" id="postform">
+        <fieldset>
+          <legend>
+            <h2 class="form-header"> Funnies fetcher</h2>
+          </legend>
+          <div>
+            <div class="option-fieldsets">
+              <fieldset>
+                <legend class="inner-legend"><span>Categories</span></legend>
+                <div class="multiselect-options">
+                  <% (categories || []).forEach(category=> { %>
+                    <label class="multiselect-option">
+                      <input type="checkbox" name="categories" class="checkbox checkbox-category"
+                        value="<%= category.toLowerCase() %>" <%=['all', 'any' ].includes(category.toLowerCase())
+                        ? 'checked' : '' %>>
+                      <%= category %>
+                    </label>
+                    <% }) %>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend class="inner-legend"><span>Blacklist flags</span></legend>
+                <div class="multiselect-options">
+                  <% (flags || []).forEach(flag=> { %>
+                    <label class="multiselect-option">
+                      <input type="checkbox" name="flags" class="checkbox" value="<%= flag %>">
+                      <%= flag %>
+                    </label>
+                    <% }) %>
+                </div>
+              </fieldset>
+              <fieldset style="border: none;">
+                <div class="multiselect-options">
+                  <label> Safemode:
+                    <input type="checkbox" id="safemode-checkbox" name="safemode-checkbox" value="safemode" />
+                  </label>
+                  <button type="reset" form="postform" id="form-reset-btn">Reset</button>
+                  <button type="submit" form="postform" id="form-submit-btn">Submit</button>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="post-list">
+      <% cards.forEach(card=> { %>
+        <div class="card">
+          <span class="card-details">
+            <%= card.category %>
+          </span>
+          <% if (card.flags.length> 0) { %>
+            <span class="card-details">
+              <%= card.flags.join(' ') %>
+            </span>
+          <% } %>
+          <span class="card-details">
+            id: <%= card.id %>
+          </span>
+          <p>
+            <%= card.content %>
+          </p>
+        </div>
+        <% }); %>
+    </div>
+
+  </div>
+  <script src="/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+body {
+    font: 1em 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 1% 10%;
+    color: aliceblue;
+}
+
+
+html,
+body,
+textarea,
+input {
+    background-color: rgb(25, 26, 27);
+    color: aliceblue;
+}
+
+.header {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 1.5rem;
+}
+
+fieldset {
+    display: flex;
+    padding: 1rem 3rem;
+    border-color: rgb(178, 184, 202);
+    border-radius: 0.3rem;
+}
+
+.new-post-form>form>fieldset>div {
+    flex: 1;
+    min-width: 0;
+}
+
+input:disabled {
+    background-color: gray;
+    color: lightgray;
+}
+
+label {
+    margin-right: 1rem;
+    user-select: none;
+}
+
+button {
+    padding: 0.25rem;
+    width: 100%;
+}
+
+.checkbox {
+    /* user-select: none; */
+    cursor: pointer;
+}
+
+.inner-legend {
+    margin: 0 -2rem;
+}
+
+.inner-legend span {
+    margin: 0 0.5rem;
+}
+
+.option-fieldsets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.option-fieldsets>fieldset {
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding: 1rem 3rem;
+}
+
+.multiselect-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+
+.new-post-form .multiselect-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 1px;
+}
+
+.new-post-form .multiselect-option input {
+    width: auto;
+    margin: 0;
+}
+
+.form-header {
+    margin: 0 2rem;
+}
+
+.new-post-form textarea {
+    margin-top: 0.5rem;
+}
+
+.new-post-form button {
+    margin-top: 0.5rem;
+}
+
+
+.new-post-form label input,
+.new-post-form label select {
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+    /* padding: 0.5rem; */
+}
+
+.new-post-form label {
+    display: inline-flex;
+
+}
+
+.card {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background-color: rgb(18, 19, 20);
+    transition: background-color 0.25s ease;
+    border-radius: 0.3rem;
+}
+
+.card:hover {
+    background-color: rgb(10, 10, 10);
+}
+
+/* .card {
+    text-decoration: underline aliceblue;
+    color: aliceblue; 
+} */
+
+.card-tag {
+    margin-left: 1rem;
+    font-size: small;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.card-details {
+    color: rgb(150, 150, 150);
+    margin-left: 1.5rem;
+    font-size: small;
+    font-weight: normal;
+}
+
+.card p {
+    margin-top: 0;
+    font-size: large;
+    white-space: pre-line;
+}
+
+.form-submit-error {
+    display: none;
+}
+
+
+@media (max-width: 480px) {
+    body {
+        padding: 1% 1%;
+    }
+
+    fieldset {
+        box-sizing: border-box;
+        display: flex;
+        padding: 1rem 1rem;
+        width: auto;
+    }
+
+    .option-fieldsets>fieldset {
+        flex-basis: 100%;
+    }
+
+    .new-post-form textarea {
+        width: 100%;
+    }
+
+    .new-post-form label,
+    .new-post-form label input {
+        width: 100%;
+    }
+}

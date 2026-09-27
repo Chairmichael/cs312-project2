@@ -47,8 +47,13 @@
                   <label> Safemode:
                     <input type="checkbox" id="safemode-checkbox" name="safemode-checkbox" value="safemode" />
                   </label>
-                  <button type="reset" form="postform" id="form-reset-btn">Reset</button>
-                  <button type="submit" form="postform" id="form-submit-btn">Submit</button>
+                  <div class="buttons">
+                    <button type="reset" form="postform" id="form-reset-btn">Reset</button>
+                    <button type="submit" form="postform" id="form-submit-btn">Submit</button>
+                  </div>
+                  <% if (typeof errorOccured !=='undefined' && errorOccured) { %>
+                    <span class="error-text" id="form-error-text">An error occured</span>
+                    <% } %>
                 </div>
               </fieldset>
             </div>

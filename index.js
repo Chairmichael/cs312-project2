@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 let cards = [];
 let jokeParameters = {};
+let errorOccurred = false;
 
 const jokeApi = axios.create({
     baseURL: 'https://v2.jokeapi.dev',
@@ -17,18 +18,26 @@ const jokeApi = axios.create({
 
 
 app.get('/', async (req, res) => {
-    res.render('index', { ...jokeParameters, cards });
+    res.render('index', { ...jokeParameters, cards, errorOccurred: errorOccurred });
+    errorOccurred = false;
 });
 
 
 app.post('/', async (req, res) => {
     console.log(req.body);
+
     let categories = req.body.categories ?? [];
-    if (!Array.isArray(categories)) categories = [categories];
+    if (!Array.isArray(categories))
+        categories = [categories];
     let flags = req.body.flags ?? [];
-    if (!Array.isArray(flags)) flags = [flags];
+    if (!Array.isArray(flags))
+        flags = [flags];
+
     const joke = await fetchJoke(categories, flags, Boolean(req.body['safemode-checkbox']));
-    prependJoke(joke);
+    errorOccurred = joke.error;
+    if (!errorOccurred)
+        prependJoke(joke);
+
     res.redirect('/');
 });
 
@@ -46,7 +55,7 @@ function prependJoke(joke) {
         id: joke.id,
         category: joke.category,
         flags: jokeFlags,
-        content: jokeContent,
+        content: jokeContent.trim(),
     });
     console.log(cards[0]);
 };
@@ -62,7 +71,8 @@ async function fetchJoke(categories, flags, safemode) {
         });
         return response.data;
     } catch (error) {
-        console.log(error);
+        console.log(error.response);
+        return { 'error': error.response?.status };
     }
 };
 
